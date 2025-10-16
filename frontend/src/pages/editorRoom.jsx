@@ -4,7 +4,7 @@ import { socket } from "../utils/socket";
 import Navbar from "../components/Navbar";
 import CodeBox from "../components/codeblock/codeBox.jsx";
 import OutputPanel from "../components/OutputPanel";
-import VideoGrid from "../components/VideoGridd";
+import VideoGrid from "../components/videoGrid";
 import ChatBox from "../components/ChatBox";
 import { useDispatch, useSelector } from "react-redux";
 import { setRoomParticipants } from "../redux/user";
