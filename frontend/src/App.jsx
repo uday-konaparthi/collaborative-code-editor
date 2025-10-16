@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import Register from "./auth/register";
 import Login from "./auth/login";
-import Dashboard from "./pages/Dashboard";
-import JoinRoom from "./pages/JoinRoom";
+import Dashboard from "./pages/dashboard";
+import JoinRoom from "./pages/joinRoom";
 import EditorRoom from "./pages/EditorRoom";
 import { Toaster } from "react-hot-toast";
 
