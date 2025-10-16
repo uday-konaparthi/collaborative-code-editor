@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 import CodeBox from "../components/codeblock/codeBox.jsx";
 import OutputPanel from "../components/OutputPanel";
 import VideoGrid from "../components/videoGrid";
-import ChatBox from "../components/ChatBox";
+import ChatBox from "../components/chatBox";
 import { useDispatch, useSelector } from "react-redux";
 import { setRoomParticipants } from "../redux/user";
 import CollapsibleControl from "../components/CollapsibleControl";
