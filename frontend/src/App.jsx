@@ -5,7 +5,7 @@ import Register from "./auth/register";
 import Login from "./auth/login";
 import Dashboard from "./pages/dashboard";
 import JoinRoom from "./pages/joinRoom";
-import EditorRoom from "./pages/EditorRoom";
+import EditorRoom from "./pages/editorRoom"
 import { Toaster } from "react-hot-toast";
 
 function App() {
