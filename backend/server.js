@@ -1,24 +1,37 @@
-const express = require('express')
+const express = require("express");
 require("dotenv").config();
-const cookieparser = require("cookie-parser")
-const cors = require("cors")
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
 const http = require("http");
 const { Server } = require("socket.io");
+const helmet = require("helmet");
 
 const authRoute = require("./routes/auth");
-const connectDB = require('./config/db');
+const connectDB = require("./config/db");
 const roomRoutes = require("./routes/roomRoutes");
 const userRoutes = require("./routes/userRoutes");
 
-const app = express()
-const port = 3000
+const app = express();
+const port = process.env.PORT || 3000;
 
-app.use(cookieparser())
+app.use(helmet());
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  "http://localhost:5173",
+];
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL,
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true,
 }));
 
@@ -26,26 +39,29 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: process.env.FRONTEND_URL, // your frontend URLs
+    origin: allowedOrigins,
     methods: ["GET", "POST"],
-    credentials: true
-  }
+    credentials: true,
+  },
 });
 
-connectDB()
+connectDB();
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+app.get("/", (req, res) => {
+  res.send("API running successfully 🚀");
+});
 
-require('./utils/socketHandler')(io);
+require("./utils/socketHandler")(io);
 
 app.use("/api/auth", authRoute);
-
 app.use("/api/rooms", roomRoutes);
-
 app.use("/api/user", userRoutes);
 
-server.listen(port, '0.0.0.0', () => {
-  console.log(`Example app listening on port ${port}`)
-})
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: "Internal Server Error" });
+});
+
+server.listen(port, "0.0.0.0", () => {
+  console.log(`Server running on port ${port}`);
+});
