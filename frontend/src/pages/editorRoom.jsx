@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { socket } from "../utils/socket";
 import Navbar from "../components/Navbar";
-import CodeBox from "../components/codeBlock/codeBox";
+import CodeBox from "../components/codeBlock/CodeBox";
 import OutputPanel from "../components/OutputPanel";
-import VideoGrid from "../components/videoGridd";
+import VideoGrid from "../components/VideoGridd";
 import ChatBox from "../components/ChatBox";
 import { useDispatch, useSelector } from "react-redux";
 import { setRoomParticipants } from "../redux/user";
@@ -51,7 +51,7 @@ const EditorRoom = () => {
 
   return (
     <div>
-      <div className="flex flex-col h-screen dark:bg-black bg-white text-gray-200 font-sans ">
+      <div className="xl:flex flex-col h-screen dark:bg-black bg-white text-gray-200 font-sans hidden">
         <div className="flex-none">
           <Navbar />
         </div>
@@ -109,7 +109,7 @@ const EditorRoom = () => {
       </div>
 
       {/* Mobile / Small Screen Fallback */}
-      <div className="hidden flex flex-col items-center justify-center h-screen text-center px-6 dark:bg-black bg-white text-gray-800 dark:text-gray-200">
+      <div className="xl:hidden flex flex-col items-center justify-center h-screen text-center px-6 dark:bg-black bg-white text-gray-800 dark:text-gray-200">
         <h1 className="text-2xl font-semibold mb-4">⚠️ Not Supported on Small Screens</h1>
         <p className="text-sm max-w-md leading-relaxed">
           The collaborative coding environment works best on larger screens.
