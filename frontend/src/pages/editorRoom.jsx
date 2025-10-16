@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { socket } from "../utils/socket";
 import Navbar from "../components/Navbar";
-import CodeBox from "../components/codeBlock/CodeBox";
+import CodeBox from "../components/codeblock/CodeBox";
 import OutputPanel from "../components/OutputPanel";
 import VideoGrid from "../components/VideoGridd";
 import ChatBox from "../components/ChatBox";
